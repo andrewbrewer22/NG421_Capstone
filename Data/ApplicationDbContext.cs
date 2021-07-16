@@ -17,6 +17,7 @@ namespace capstone.Data
         public IConfiguration Configuration { get; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Car> Cars { get; set; }
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
@@ -26,6 +27,11 @@ namespace capstone.Data
         public ApplicationDbContext() : base(new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlite("Data Source=app.db").Options,null)
         {
 
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Car>().HasData(new Car { Id = 1, Make = "Ford", Model = "Focus", Year = 2008 });
+            base.OnModelCreating(builder);
         }
     }
 }

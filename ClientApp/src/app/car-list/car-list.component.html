@@ -1,0 +1,29 @@
+<h1 id="tableLabel">Cars</h1>
+
+<p *ngIf="!cars"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cars">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of cars">
+      <td>{{ s.id }}</td>
+      <td>{{ s.make }}</td>
+      <td>{{ s.model }}</td>
+      <td>{{ s.year }}</td>
+    </tr>
+  </tbody>
+</table>
+Make
+<input [(ngModel)]="car.make" name="make" />
+Model
+<input [(ngModel)]="car.model" name="model" />
+Year
+<input type="number" [(ngModel)]="car.year" name="year" />
+<button (click)="save()">Save</button>
